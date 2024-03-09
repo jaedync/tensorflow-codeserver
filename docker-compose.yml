@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+
+  code-server-1:
+    build: ./coder
+    container_name: code-server-1
+    ports:
+      - "8443:8080"
+    hostname: fennec1
+    volumes:
+      - ./code1/workspace:/home/coder/workspace
+      - ./code1/config:/home/coder/.config/code-server
+    environment:
+      - PASSWORD=123abc
+      - TF_CPP_MIN_LOG_LEVEL=3
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            capabilities: [gpu]
+
+  code-server-2:
+    build: ./coder
+    container_name: code-server-2
+    ports:
+      - "8444:8080"
+    hostname: fennec2
+    volumes:
+      - ./code2/workspace:/home/coder/workspace
+      - ./code2/config:/home/coder/.config/code-server
+    environment:
+      - PASSWORD=abc123
+      - TF_CPP_MIN_LOG_LEVEL=3
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            capabilities: [gpu]

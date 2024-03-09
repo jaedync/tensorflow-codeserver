@@ -1,0 +1,12 @@
+# Use the code-server base image
+FROM codercom/code-server:latest
+
+# Copy the favicon files
+COPY favicon.ico /usr/lib/code-server/src/browser/media/favicon.ico
+COPY favicon.ico /usr/lib/code-server/src/browser/media/favicon-dark-support.svg
+COPY favicon.ico /usr/lib/code-server/src/browser/media/favicon.svg
+
+# Copy the PWA icon files
+COPY pwa-icon-512.png /usr/lib/code-server/src/browser/media/pwa-icon-512.png
+COPY pwa-icon-192.png /usr/lib/code-server/src/browser/media/pwa-icon-192.png
+COPY pwa-icon.png /usr/lib/code-server/src/browser/media/pwa-icon.png
